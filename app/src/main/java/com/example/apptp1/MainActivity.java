@@ -2,6 +2,7 @@ package com.example.apptp1;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -42,7 +43,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if (v.getId() == R.id.edtPseudo) {
             saluer("Saisir votre pseudo");
         } else if (v.getId() == R.id.btnOK) {
-            saluer("click");
+            // nouvelle activité
+            Intent versSecondAct = new Intent(this,SecondActivity.class);
+            Bundle myBdl = new Bundle();
+            myBdl.putString("pseudo",edtPseudo.getText().toString());
+            versSecondAct.putExtras(myBdl);
+            startActivity(versSecondAct);
         }
     }
 }
