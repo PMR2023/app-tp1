@@ -5,13 +5,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     private static final String CAT = "PMR";
     private EditText edtPseudo;
+    private Button btnOK;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,12 +21,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Log.i(CAT, "onCreate");
         edtPseudo = findViewById(R.id.edtPseudo);
-        edtPseudo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                saluer("entrez votre pseudo");
-            }
-        });
+        btnOK = findViewById(R.id.btnOK);
+        edtPseudo.setOnClickListener(this);
+        btnOK.setOnClickListener(this);
     }
     public void saluer(String s) {
         Toast myToast = Toast.makeText(this,s,Toast.LENGTH_LONG);
@@ -38,5 +37,12 @@ public class MainActivity extends AppCompatActivity {
         Log.i(CAT, "onStart");
     }
 
-
+    @Override
+    public void onClick(View v) {
+        if (v.getId() == R.id.edtPseudo) {
+            saluer("Saisir votre pseudo");
+        } else if (v.getId() == R.id.btnOK) {
+            saluer("click");
+        }
+    }
 }
